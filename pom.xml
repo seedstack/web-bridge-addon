@@ -75,7 +75,7 @@
     <dependencies>
         <dependency>
             <groupId>org.seedstack.seed</groupId>
-            <artifactId>seed-security-core</artifactId>
+            <artifactId>seed-web-security</artifactId>
             <version>${seed.version}</version>
         </dependency>
         <dependency>
@@ -102,12 +102,6 @@
             <groupId>com.jayway.restassured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.seedstack.seed</groupId>
-            <artifactId>seed-web-security</artifactId>
-            <version>${seed.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
