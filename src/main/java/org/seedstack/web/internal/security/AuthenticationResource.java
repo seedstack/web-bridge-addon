@@ -13,6 +13,7 @@ import org.seedstack.seed.security.SecuritySupport;
 import javax.inject.Inject;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
 
@@ -22,18 +23,24 @@ public class AuthenticationResource {
     private SecuritySupport securitySupport;
 
     @GET
-    public Response authenticate() {
+    public Response authenticateGet() {
         if (!securitySupport.isAuthenticated()) {
-            return Response.status(Response.Status.FORBIDDEN).build();
+            return Response.status(Response.Status.UNAUTHORIZED).build();
         }
+        return Response.status(Response.Status.NO_CONTENT).build();
+    }
 
+    @POST
+    public Response authenticatePost() {
+        if (!securitySupport.isAuthenticated()) {
+            return Response.status(Response.Status.UNAUTHORIZED).build();
+        }
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 
     @DELETE
     public Response deauthenticate() {
         securitySupport.logout();
-
         return Response.status(Response.Status.NO_CONTENT).build();
     }
 }

@@ -35,7 +35,7 @@ public class AuthorizationsResource {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAuthenticatedSubjectAuthorizations() {
         if (!securitySupport.isAuthenticated()) {
-            return Response.status(Response.Status.FORBIDDEN).build();
+            return Response.status(Response.Status.UNAUTHORIZED).build();
         }
 
         // Principals
@@ -61,9 +61,9 @@ public class AuthorizationsResource {
             roleRepresentation.setAttributes(roleAttributes);
             roleRepresentations.add(roleRepresentation);
         }
+
         // Individual permissions
         List<String[]> individualPermissions = new ArrayList<>();
-
         AuthorizationsRepresentation authorizationsRepresentation = new AuthorizationsRepresentation();
         authorizationsRepresentation.setId(securitySupport.getSimplePrincipalByName(Principals.IDENTITY).getValue());
         authorizationsRepresentation.setType("user");
