@@ -1,3 +1,3 @@
-# Version 1.0.0 (2017-09-??)
+# Version 1.0.0 (2017-07-31)
 
-* [new] Initial commit.
+* [new] Initial version.
