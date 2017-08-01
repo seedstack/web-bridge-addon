@@ -23,38 +23,11 @@ import static com.jayway.restassured.RestAssured.given;
 import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
 
 
-public class SecurityResourcesIT extends AbstractSeedWebIT {
+public class AuthorizationsIT extends AbstractSeedWebIT {
     @Deployment
     public static WebArchive createDeployment() {
-        return ShrinkWrap.create(WebArchive.class);
-    }
-
-    @Test
-    @RunAsClient
-    public void loginValidUser(@ArquillianResource URL baseURL) throws Exception {
-        given()
-                .auth().basic("ThePoltergeist", "bouh")
-                .expect().statusCode(204)
-                .when().get(baseURL.toString() + "web-bridge/security/authentication");
-    }
-
-    @Test
-    @RunAsClient
-    public void logoutValidUser(@ArquillianResource URL baseURL) throws Exception {
-        // With basic authentication the user is logged in and out in one client call
-        given()
-                .auth().basic("ThePoltergeist", "bouh")
-                .expect().statusCode(204)
-                .when().delete(baseURL.toString() + "web-bridge/security/authentication");
-    }
-
-    @Test
-    @RunAsClient
-    public void loginInvalidUser(@ArquillianResource URL baseURL) throws Exception {
-        given()
-                .auth().basic("InvalidUser", "invalidPassword")
-                .expect().statusCode(401)
-                .when().get(baseURL.toString() + "web-bridge/security/authentication");
+        return ShrinkWrap.create(WebArchive.class)
+                .addAsResource("basic-auth.yaml", "META-INF/configuration/basic-auth.yaml");
     }
 
     @Test

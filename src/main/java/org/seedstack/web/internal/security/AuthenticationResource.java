@@ -16,6 +16,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
+
+import static javax.ws.rs.core.Response.Status.FOUND;
+import static javax.ws.rs.core.Response.Status.UNAUTHORIZED;
 
 @Path("/web-bridge/security/authentication")
 public class AuthenticationResource {
@@ -25,22 +29,24 @@ public class AuthenticationResource {
     @GET
     public Response authenticateGet() {
         if (!securitySupport.isAuthenticated()) {
-            return Response.status(Response.Status.UNAUTHORIZED).build();
+            return Response.status(UNAUTHORIZED).build();
         }
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.noContent().build();
     }
 
     @POST
     public Response authenticatePost() {
         if (!securitySupport.isAuthenticated()) {
-            return Response.status(Response.Status.UNAUTHORIZED).build();
+            return Response.status(UNAUTHORIZED).build();
         }
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.status(FOUND)
+                .location(UriBuilder.fromResource(AuthorizationsResource.class).build())
+                .build();
     }
 
     @DELETE
     public Response deauthenticate() {
         securitySupport.logout();
-        return Response.status(Response.Status.NO_CONTENT).build();
+        return Response.noContent().build();
     }
 }
