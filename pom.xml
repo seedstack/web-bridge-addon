@@ -1,6 +1,6 @@
 <!--
 
-    Copyright (c) 2013-2016, The SeedStack authors <http://seedstack.org>
+    Copyright © 2013-2018, The SeedStack authors <http://seedstack.org>
 
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -14,18 +14,17 @@
     <parent>
         <groupId>org.seedstack.poms</groupId>
         <artifactId>parent-internal</artifactId>
-        <version>3.1.0</version>
+        <version>3.2.1</version>
     </parent>
 
     <groupId>org.seedstack.addons.web</groupId>
     <artifactId>web-bridge</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
 
     <properties>
-        <poms.version>3.1.0</poms.version>
-        <seed.version>3.3.0</seed.version>
+        <seed.version>3.5.0</seed.version>
 
-        <compatibility.skip>true</compatibility.skip>
+        <compatibility.version>1.0.0</compatibility.version>
 
         <bintray.package>web-bridge-addon</bintray.package>
     </properties>
@@ -86,22 +85,21 @@
         </dependency>
 
         <dependency>
-            <groupId>org.seedstack.poms</groupId>
-            <artifactId>arquillian-composite</artifactId>
-            <version>${poms.version}</version>
-            <type>pom</type>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.skyscreamer</groupId>
             <artifactId>jsonassert</artifactId>
             <version>${jsonassert.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.jayway.restassured</groupId>
+            <groupId>io.rest-assured</groupId>
             <artifactId>rest-assured</artifactId>
             <version>${rest-assured.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -112,7 +110,7 @@
         </dependency>
         <dependency>
             <groupId>org.seedstack.seed</groupId>
-            <artifactId>seed-testing</artifactId>
+            <artifactId>seed-testing-junit4</artifactId>
             <version>${seed.version}</version>
             <scope>test</scope>
         </dependency>

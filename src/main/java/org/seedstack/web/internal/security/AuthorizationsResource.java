@@ -1,30 +1,29 @@
-/**
- * Copyright (c) 2013-2016, The SeedStack authors <http://seedstack.org>
+/*
+ * Copyright © 2013-2018, The SeedStack authors <http://seedstack.org>
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+
 package org.seedstack.web.internal.security;
 
-
-import org.seedstack.seed.security.Role;
-import org.seedstack.seed.security.Scope;
-import org.seedstack.seed.security.SecuritySupport;
-import org.seedstack.seed.security.principals.Principals;
-import org.seedstack.seed.security.principals.SimplePrincipalProvider;
-
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
+import org.seedstack.seed.security.Role;
+import org.seedstack.seed.security.Scope;
+import org.seedstack.seed.security.SecuritySupport;
+import org.seedstack.seed.security.principals.Principals;
+import org.seedstack.seed.security.principals.SimplePrincipalProvider;
 
 @Path("/web-bridge/security/authorizations")
 public class AuthorizationsResource {
@@ -54,7 +53,10 @@ public class AuthorizationsResource {
                 String attributeName = scope.getName();
                 roleAttributes.computeIfAbsent(attributeName, k -> new ArrayList<>()).add(scope.getValue());
             }
-            rolePermissions.addAll(role.getPermissions().stream().map(corePermission -> corePermission.getPermission().split(":")).collect(Collectors.toList()));
+            rolePermissions.addAll(role.getPermissions()
+                    .stream()
+                    .map(corePermission -> corePermission.getPermission().split(":"))
+                    .collect(Collectors.toList()));
             RoleRepresentation roleRepresentation = new RoleRepresentation();
             roleRepresentation.setName(role.getName());
             roleRepresentation.setPermissions(rolePermissions);
