@@ -14,7 +14,7 @@
     <parent>
         <groupId>org.seedstack.poms</groupId>
         <artifactId>parent-internal</artifactId>
-        <version>3.3.0</version>
+        <version>3.4.1</version>
     </parent>
 
     <groupId>org.seedstack.addons.web</groupId>
@@ -22,7 +22,7 @@
     <version>1.0.1-SNAPSHOT</version>
 
     <properties>
-        <seed.version>3.6.0</seed.version>
+        <seed.version>3.7.0</seed.version>
 
         <compatibility.version>1.0.0</compatibility.version>
 
