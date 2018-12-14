@@ -22,7 +22,7 @@ import org.seedstack.seed.undertow.LaunchWithUndertow;
 @LaunchWithUndertow
 @ConfigurationProfiles("form")
 public class FormAuthenticationIT {
-    @Configuration("web.runtime.baseUrl")
+    @Configuration("runtime.web.baseUrl")
     private String url;
 
     @Test
@@ -31,9 +31,9 @@ public class FormAuthenticationIT {
                 .formParam("username", "ThePoltergeist")
                 .formParam("password", "bouh")
                 .expect().statusCode(302)
-                .when().post(url + "web-bridge/security/authentication")
+                .when().post(url + "/web-bridge/security/authentication")
                 .header("Location");
-        assertThat(location).endsWith("web-bridge/security/authorizations");
+        assertThat(location).endsWith("/web-bridge/security/authorizations");
     }
 
     @Test
@@ -42,6 +42,6 @@ public class FormAuthenticationIT {
                 .formParam("username", "ThePoltergeist")
                 .formParam("password", "invalid")
                 .expect().statusCode(401)
-                .when().post(url + "web-bridge/security/authentication");
+                .when().post(url + "/web-bridge/security/authentication");
     }
 }

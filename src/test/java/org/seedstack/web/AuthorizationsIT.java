@@ -23,7 +23,7 @@ import org.seedstack.seed.undertow.LaunchWithUndertow;
 @LaunchWithUndertow
 @ConfigurationProfiles("basic")
 public class AuthorizationsIT {
-    @Configuration("web.runtime.baseUrl")
+    @Configuration("runtime.web.baseUrl")
     private String url;
 
     @Test
@@ -31,7 +31,7 @@ public class AuthorizationsIT {
         ResponseBody r = given()
                 .auth().basic("ThePoltergeist", "bouh")
                 .expect().statusCode(200)
-                .when().get(url + "web-bridge/security/authorizations")
+                .when().get(url + "/web-bridge/security/authorizations")
                 .body();
         String expected = "{\"id\":\"ThePoltergeist\",\"type\":\"user\"," +
                 "\"principals\":{\"userId\":\"ThePoltergeist\"},\"roles\":[{\"name\":\"jedi\",\"attributes\":{}," +

@@ -21,7 +21,7 @@ import org.seedstack.seed.undertow.LaunchWithUndertow;
 @LaunchWithUndertow
 @ConfigurationProfiles("basic")
 public class BasicAuthenticationIT {
-    @Configuration("web.runtime.baseUrl")
+    @Configuration("runtime.web.baseUrl")
     private String url;
 
     @Test
@@ -29,7 +29,7 @@ public class BasicAuthenticationIT {
         given()
                 .auth().basic("ThePoltergeist", "bouh")
                 .expect().statusCode(204)
-                .when().get(url + "web-bridge/security/authentication");
+                .when().get(url + "/web-bridge/security/authentication");
     }
 
     @Test
@@ -38,7 +38,7 @@ public class BasicAuthenticationIT {
         given()
                 .auth().basic("ThePoltergeist", "bouh")
                 .expect().statusCode(204)
-                .when().delete(url + "web-bridge/security/authentication");
+                .when().delete(url + "/web-bridge/security/authentication");
     }
 
     @Test
@@ -46,6 +46,6 @@ public class BasicAuthenticationIT {
         given()
                 .auth().basic("InvalidUser", "invalidPassword")
                 .expect().statusCode(401)
-                .when().get(url + "web-bridge/security/authentication");
+                .when().get(url + "/web-bridge/security/authentication");
     }
 }
