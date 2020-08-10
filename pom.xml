@@ -1,6 +1,6 @@
 <!--
 
-    Copyright © 2013-2018, The SeedStack authors <http://seedstack.org>
+    Copyright © 2013-2020, The SeedStack authors <http://seedstack.org>
 
     This Source Code Form is subject to the terms of the Mozilla Public
     License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -14,15 +14,15 @@
     <parent>
         <groupId>org.seedstack.poms</groupId>
         <artifactId>parent-internal</artifactId>
-        <version>3.4.3</version>
+        <version>3.4.9</version>
     </parent>
 
     <groupId>org.seedstack.addons.web</groupId>
     <artifactId>web-bridge</artifactId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>1.0.4-SNAPSHOT</version>
 
     <properties>
-        <seed.version>3.8.0</seed.version>
+        <seed.version>3.10.0</seed.version>
 
         <compatibility.version>1.0.0</compatibility.version>
 
